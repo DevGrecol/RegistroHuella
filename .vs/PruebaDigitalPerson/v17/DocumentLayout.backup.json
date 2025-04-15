@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|c:\\users\\personal\\desktop\\anterior\\pruebadigitalperson - one touch -sdk - rte\\conexion\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:conexion\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\conexion\\conexionbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:conexion\\conexionbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\frmverificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:frmverificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\capturarhuella.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:capturarhuella.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPerson.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Empleado.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Conexion\\Empleado.cs",
+              "RelativeDocumentMoniker": "Conexion\\Empleado.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Conexion\\Empleado.cs",
+              "RelativeToolTip": "Conexion\\Empleado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T21:40:52.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmRegistrar.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\FrmRegistrar.cs",
+              "RelativeDocumentMoniker": "FrmRegistrar.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\FrmRegistrar.cs",
+              "RelativeToolTip": "FrmRegistrar.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAiwD4AAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T16:00:24.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConexionBD.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Conexion\\ConexionBD.cs",
+              "RelativeDocumentMoniker": "Conexion\\ConexionBD.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Conexion\\ConexionBD.cs",
+              "RelativeToolTip": "Conexion\\ConexionBD.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:51:31.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CapturarHuella.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\CapturarHuella.cs",
+              "RelativeDocumentMoniker": "CapturarHuella.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\CapturarHuella.cs",
+              "RelativeToolTip": "CapturarHuella.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwEUAAAByAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T16:02:41.743Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T18:36:12.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmVerificar.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\FrmVerificar.cs",
+              "RelativeDocumentMoniker": "FrmVerificar.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\Anterior\\PruebaDigitalPerson - One Touch -SDK - RTE\\FrmVerificar.cs",
+              "RelativeToolTip": "FrmVerificar.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAmwDMAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T14:08:09.379Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
