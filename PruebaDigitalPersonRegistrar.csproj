@@ -73,10 +73,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>300C959209E86A628B95454EAE88E9902B7E2A59</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>01FDA32EC9C19F19B6E86BF86C8A73271C754C38</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PruebaDigitalPerson_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PruebaDigitalPersonRegistrar_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -310,6 +310,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="PruebaDigitalPersonRegistrar_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

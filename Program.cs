@@ -17,7 +17,9 @@ namespace PruebaDigitalPersonRegistrar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+
+            //-----Cambio para no mostrar Main-----
+            Application.Run(new frmRegistrar());
         }
     }
 }

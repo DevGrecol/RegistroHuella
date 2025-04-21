@@ -36,29 +36,28 @@ namespace PruebaDigitalPersonRegistrar
         {
             base.Process(Sample);
 
-
-            /// la huella debe ser comparada en este punto para saber si esta registrada
             DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Enrollment);
 
             if (features != null) try
                 {
-                    MakeReport("La huella dactilar fue creado.");
-                    Enroller.AddFeatures(features);  
+                    MakeReport("La huella dactilar fue creada.");
+                    Enroller.AddFeatures(features);
                 }
                 finally
                 {
                     UpdateStatus();
 
-                  
                     switch (Enroller.TemplateStatus)
                     {
-                        case DPFP.Processing.Enrollment.Status.Ready:   // report success and stop capturing
+                        case DPFP.Processing.Enrollment.Status.Ready:
                             OnTemplate(Enroller.Template);
-                            SetPrompt("Haga clic en Cerrar, y luego haga clic en Verificación de Huella Dactilar.");
+                            SetPrompt("Huella capturada correctamente. El formulario se cerrará.");
                             Stop();
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
                             break;
 
-                        case DPFP.Processing.Enrollment.Status.Failed:  // report failure and restart capturing
+                        case DPFP.Processing.Enrollment.Status.Failed:
                             Enroller.Clear();
                             Stop();
                             UpdateStatus();
