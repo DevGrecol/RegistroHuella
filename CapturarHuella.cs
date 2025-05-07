@@ -24,11 +24,16 @@ namespace PruebaDigitalPersonRegistrar
 
         private DPFP.Processing.Enrollment Enroller;
 
+        public CapturarHuella() : base("") // Agrega este constructor sin parámetros
+        {
+            InitializeComponent();
+        }
+
         protected override void Init()
         {
             base.Init();
             base.Text = "Dar de alta Huella";
-            Enroller = new DPFP.Processing.Enrollment();           
+            Enroller = new DPFP.Processing.Enrollment();
             UpdateStatus();
         }
 
@@ -74,11 +79,9 @@ namespace PruebaDigitalPersonRegistrar
             SetStatus(String.Format("Se necesitan muestras de huellas dactilares: {0}", Enroller.FeaturesNeeded));
         }
 
-        public CapturarHuella()
+        public CapturarHuella(string dedo) : base(dedo)
         {
             InitializeComponent();
         }
-
-       
     }
 }

@@ -34,10 +34,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 439);
+            this.ClientSize = new System.Drawing.Size(936, 454);
             this.Name = "CapturarHuella";
             this.Text = "CapturarHuella";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

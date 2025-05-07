@@ -23,6 +23,16 @@ namespace PruebaDigitalPersonRegistrar.Conexion
 
         public int codigo_ver { get; set; }
 
+        public byte[] MeñiqueIzquierdo { get; set; }
+        public byte[] AnularIzquierdo { get; set; }
+        public byte[] MedioIzquierdo { get; set; }
+        public byte[] IndiceIzquierdo { get; set; }
+        public byte[] PulgarIzquierdo { get; set; }
+        public byte[] MeñiqueDerecho { get; set; }
+        public byte[] AnularDerecho { get; set; }
+        public byte[] MedioDerecho { get; set; }
+        public byte[] IndiceDerecho { get; set; }
+        public byte[] PulgarDerecho { get; set; }
     }
 
 }

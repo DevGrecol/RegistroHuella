@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace PruebaDigitalPersonRegistrar
 {
-    public partial class frmVerificar : CaptureForm
+    public partial class frmVerificar : CaptureFormVerificar
     {
         private DPFP.Template Template;
         private DPFP.Verification.Verification Verificator;
@@ -29,13 +29,13 @@ namespace PruebaDigitalPersonRegistrar
             base.Init();
             base.Text = "Verificación de Huella Digital";
             Verificator = new DPFP.Verification.Verification();
-            UpdateStatus(0);
+            //UpdateStatus(0);
         }
 
-        private void UpdateStatus(int FAR)
-        {
-            SetStatus(String.Format("Tasa de Aceptación Falsa (FAR) = {0}", FAR));
-        }
+        //private void UpdateStatus(int FAR)
+        //{
+        //    SetStatus(String.Format("Tasa de Aceptación Falsa (FAR) = {0}", FAR));
+        //}
 
         protected override void Process(DPFP.Sample Sample)
         {
@@ -52,11 +52,9 @@ namespace PruebaDigitalPersonRegistrar
 
                 try
                 {
-                    
-                    //string query = "SELECT nombre, huella, FROM clientes";
-                    string query = "SELECT id_cliente, nombres, apellidos, codigo_ver, huella , numero_identificacion FROM public.clientes order by id_cliente desc;";
+                    string query = "SELECT id_cliente, nombres, apellidos, codigo_ver, MeñiqueIzquierdo, AnularIzquierdo, MedioIzquierdo, IndiceIzquierdo, PulgarIzquierdo, PulgarDerecho, IndiceDerecho, MedioDerecho, AnularDerecho, MeñiqueDerecho , numero_identificacion FROM public.clientes order by id_cliente desc;";
 
-                    using (NpgsqlConnection conn = new NpgsqlConnection(contexto.connectionString)) 
+                    using (NpgsqlConnection conn = new NpgsqlConnection(contexto.connectionString))
                     {
                         conn.Open();
                         using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
@@ -65,87 +63,74 @@ namespace PruebaDigitalPersonRegistrar
                             {
                                 while (reader.Read())
                                 {
+                                    bool algunaHuellaAsignada = false;
 
-                                    Boolean validador = reader.IsDBNull(4) ? false : true;
-
-                                    if (validador == false)
+                                    // Iterar a través de las 10 columnas de huellas
+                                    for (int i = 4; i < 14; i++) // Columnas de MeñiqueIzquierdo a MeñiqueDerecho
                                     {
-                                        //MessageBox.Show("La huella no esta asignada a ningun cliente");
-
-                                        txtEncontradoNombre.Text = " ";
-                                        txtEncontradoApellido.Text = " ";
-                                        txtEncontradoCedula.Text = " ";
-                                        labelNumeroPago.Text = "XXX";
-                                        //break;
-                                    }
-                                    else
-                                    {
-                                        byte[] huellaBytes = (byte[])reader["huella"];
-                                        stream = new MemoryStream(huellaBytes);
-                                        template = new DPFP.Template(stream);
-
-                                        Verificator.Verify(features, template, ref result);
-                                        UpdateStatus(result.FARAchieved);
-
-                                        if (result.Verified)
+                                        if (!reader.IsDBNull(i))
                                         {
+                                            algunaHuellaAsignada = true;
+                                            byte[] huellaBytes = (byte[])reader[i];
+                                            stream = new MemoryStream(huellaBytes);
+                                            template = new DPFP.Template(stream);
 
-                                            if (validador == false)
-                                            {
-                                                Show("La huella no esta asignada a ningun cliente", "",
-                                                     MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-                                               break;
-                                            }
-                                            else
+                                            Verificator.Verify(features, template, ref result);
+
+                                            if (result.Verified)
                                             {
                                                 Random rnd = new Random();
-
-                                                int cardPago = rnd.Next(1,1000);
-
+                                                int cardPago = rnd.Next(1, 1000);
                                                 string mostrarCardPago = cardPago.ToString();
 
                                                 if (cardPago >= 1 && cardPago <= 9)
                                                 {
-
                                                     labelNumeroPago.Text = "00" + mostrarCardPago;
-
                                                 }
                                                 else if (cardPago >= 10 && cardPago <= 99)
                                                 {
-
                                                     labelNumeroPago.Text = "0" + mostrarCardPago;
-
-                                                }else {
-
+                                                }
+                                                else
+                                                {
                                                     labelNumeroPago.Text = mostrarCardPago;
                                                 }
 
-
                                                 int nume = (int)reader.GetValue(0);
-
-                                                int update = this.actualizarCodigo(cardPago , nume);
+                                                int update = this.actualizarCodigo(cardPago, nume);
 
                                                 txtEncontradoNombre.Text = reader.GetValue(1).ToString();
-
                                                 txtEncontradoApellido.Text = reader.GetValue(2).ToString();
-
-                                                txtEncontradoCedula.Text = reader.GetValue(5).ToString();
+                                                txtEncontradoCedula.Text = reader.GetValue(14).ToString();
 
                                                 MakeReport("La huella dactilar pertenece al cliente. " + reader.GetValue(1).ToString() + " " + reader.GetValue(2).ToString());
                                                 huellaVerificada = true;
-                                                break;
-
+                                                goto VerificacionExitosa; // Salir del bucle si se encuentra una coincidencia
                                             }
                                         }
                                     }
+
+                                    if (!algunaHuellaAsignada)
+                                    {
+                                        txtEncontradoNombre.Text = " ";
+                                        txtEncontradoApellido.Text = " ";
+                                        txtEncontradoCedula.Text = " ";
+                                        labelNumeroPago.Text = "XXX";
+                                        // Puedes decidir si quieres mostrar un mensaje aquí por cada cliente sin huellas asignadas.
+                                    }
+                                }
+
+                            VerificacionExitosa:
+                                if (!huellaVerificada)
+                                {
+                                    MakeReport("La huella dactilar NO fue encontrada en la base de datos.");
+                                    txtEncontradoNombre.Text = " ";
+                                    txtEncontradoApellido.Text = " ";
+                                    txtEncontradoCedula.Text = " ";
+                                    labelNumeroPago.Text = "XXX";
                                 }
                             }
                         }
-                    }
-
-                    if (!huellaVerificada)
-                    {
-                        MakeReport("La huella dactilar NO fue encontrada en la base de datos.");
                     }
                 }
                 catch (Exception ex)
@@ -177,10 +162,10 @@ namespace PruebaDigitalPersonRegistrar
         }
 
 
-        public int actualizarCodigo(int codigo , int id_cliente) 
+        public int actualizarCodigo(int codigo, int id_cliente)
         {
 
-    
+
             using (NpgsqlConnection connection = new NpgsqlConnection(contexto.connectionString))
             {
                 try
@@ -189,7 +174,7 @@ namespace PruebaDigitalPersonRegistrar
 
                     //string sql = "INSERT INTO empleados (nombre, huella) VALUES (@nombre, @huella)";
 
-                    string sql = "UPDATE clientes SET codigo_ver = "+ codigo + " WHERE id_cliente= "+ id_cliente + "";
+                    string sql = "UPDATE clientes SET codigo_ver = " + codigo + " WHERE id_cliente= " + id_cliente + "";
 
                     using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
                     {
@@ -223,7 +208,7 @@ namespace PruebaDigitalPersonRegistrar
         }
 
 
-        public static Color ColorIntermedio(Color color1, Color color2)
+        public static new Color ColorIntermedio(Color color1, Color color2)
         {
             return Color.FromArgb(
                 (color1.R + color2.R) / 2,
@@ -231,9 +216,9 @@ namespace PruebaDigitalPersonRegistrar
                 (color1.B + color2.B) / 2);
         }
 
-        public static Point _mouseDownPoint = Point.Empty;
+        public static new Point _mouseDownPoint = Point.Empty;
 
-        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, Color color1, Color color2, Color foreColor)
+        public static new DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, Color color1, Color color2, Color foreColor)
         {
             Form messageBoxForm = new Form
             {

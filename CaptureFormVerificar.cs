@@ -18,26 +18,20 @@ namespace PruebaDigitalPersonRegistrar
     /* NOTE: This form is a base for the EnrollmentForm and the VerificationForm,
 		All changes in the CaptureForm will be reflected in all its derived forms.
 	*/
-    delegate void Function();
 
-    public partial class CaptureForm : Form, DPFP.Capture.EventHandler
+    delegate void UpdateUIHandler();
+
+    public partial class CaptureFormVerificar : Form, DPFP.Capture.EventHandler
     {
         //private DPFP.Template Template;
         private DPFP.Verification.Verification Verificator;
         //private ConexionBD contexto;
-        public string DedoSeleccionado { get; set; }
 
         public string connectionString = ("Host=localhost;Username=postgres;Password=31415926;Database=cali_17_03_2025;Pooling=true;Minimum Pool Size=5;Maximum Pool Size=100;");
 
-        public CaptureForm(string dedo)
+        public CaptureFormVerificar()
         {
             InitializeComponent();
-            DedoSeleccionado = dedo;
-            pictureBoxManoI.Image = Properties.Resources.ManoIzquierdaSinFondo;
-            pictureBoxManoI.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxManoD.Image = Properties.Resources.ManoDerechaSinFondo;
-            pictureBoxManoD.SizeMode = PictureBoxSizeMode.StretchImage;
-            ResaltarDedo();
         }
 
         protected virtual void Init()
@@ -50,11 +44,11 @@ namespace PruebaDigitalPersonRegistrar
                 if (null != Capturer)
                     Capturer.EventHandler = this;					// Subscribe for capturing events.
                 else
-                    SetPrompt("No se pudo iniciar la operaci�n de captura");
+                    SetPrompt("No se pudo iniciar la operaci n de captura");
             }
             catch
             {
-                Show("No se pudo iniciar la operaci�n de captura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
+                Show("No se pudo iniciar la operaci n de captura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
             }
         }
 
@@ -77,7 +71,7 @@ namespace PruebaDigitalPersonRegistrar
                 try
                 {
                     //string query = "SELECT nombre, huella, FROM clientes";
-                    string query = "SELECT id_cliente, nombres, apellidos, codigo_ver, huella , numero_identificacion FROM public.clientes order by id_cliente desc;";
+                    string query = "SELECT id_cliente, nombres, apellidos, codigo_ver,  meñiqueizquierdo, anularizquierdo, medioizquierdo, indiceizquierdo, pulgarizquierdo, pulgarderecho, indicederecho, medioderecho, anularderecho, meñiquederecho, numero_identificacion FROM public.clientes order by id_cliente desc;";
 
                     using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
                     {
@@ -122,7 +116,7 @@ namespace PruebaDigitalPersonRegistrar
                                             else
                                             {
 
-                                                labelVerification.Text = "Error: La huella pertenece al cliente. " + reader.GetValue(1).ToString() + " " + reader.GetValue(2).ToString();
+                                                //labelVerification.Text = "Error: La huella pertenece al cliente. " + reader.GetValue(1).ToString() + " " + reader.GetValue(2).ToString();
 
                                                 MakeReport("********");
                                                 MakeReport("**verificando coincidencia**");
@@ -168,7 +162,7 @@ namespace PruebaDigitalPersonRegistrar
                 try
                 {
                     Capturer.StartCapture();
-                    SetPrompt($"Escanea {DedoSeleccionado} usando el lector");
+                    SetPrompt("Escanea tu huella usando el lector");
                 }
                 catch
                 {
@@ -269,7 +263,7 @@ namespace PruebaDigitalPersonRegistrar
         protected void SetStatus(string status)
         {
             this.Invoke(new Function(delegate () {
-                StatusLine.Text = status;
+                //StatusLine.Text = status;
             }));
         }
 
@@ -282,32 +276,17 @@ namespace PruebaDigitalPersonRegistrar
         protected void MakeReport(string message)
         {
             this.Invoke(new Function(delegate () {
-                StatusText.AppendText(message + "\r\n");
+                //StatusText.AppendText(message + "\r\n");
             }));
         }
 
-        // Assuming CaptureForm is defined in another file, modify the access modifier of the DrawPicture method to protected.  
-        // This will allow the CapturarHuella class, which inherits from CaptureForm, to access it.  
-
-        protected void DrawPicture(Bitmap bitmap)
+        private void DrawPicture(Bitmap bitmap)
         {
-
-            this.Invoke(new Function(delegate ()
-            {
-
+            this.Invoke(new Function(delegate () {
                 Picture.Image = new Bitmap(bitmap, Picture.Size);   // fit the image into the picture box
-
             }));
-
         }
-
         private DPFP.Capture.Capture Capturer;
-
-        private void UpdateStatus(int FAR)
-        {
-            SetStatus(String.Format("Tasa de Aceptación Falsa (FAR) = {0}", FAR));
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -458,90 +437,5 @@ namespace PruebaDigitalPersonRegistrar
             return messageBoxForm.ShowDialog();
         }
 
-        private void StatusText_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ResaltarDedo()
-        {
-            Graphics g;
-            Pen pen = new Pen(Color.Red, 3);
-
-            switch (DedoSeleccionado.ToLower())
-            {
-                case "meñiqueizquierdo":
-                    g = Graphics.FromImage(pictureBoxManoI.Image);
-                    g.DrawRectangle(pen, 6, 62, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoI.Refresh();
-                    break;
-                case "anularizquierdo":
-                    g = Graphics.FromImage(pictureBoxManoI.Image);
-                    g.DrawRectangle(pen, 22, 30, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoI.Refresh();
-                    break;
-                case "medioizquierdo":
-                    g = Graphics.FromImage(pictureBoxManoI.Image);
-                    g.DrawRectangle(pen, 44, 15, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoI.Refresh();
-                    break;
-                case "indiceizquierdo":
-                    g = Graphics.FromImage(pictureBoxManoI.Image);
-                    g.DrawRectangle(pen, 87, 20, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoI.Refresh();
-                    break;
-                case "pulgarizquierdo":
-                    g = Graphics.FromImage(pictureBoxManoI.Image);
-                    g.DrawRectangle(pen, 148, 82, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoI.Refresh();
-                    break;
-                case "pulgarderecho":
-                    g = Graphics.FromImage(pictureBoxManoD.Image);
-                    g.DrawRectangle(pen, 15, 86, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoD.Refresh();
-                    break;
-                case "indicederecho":
-                    g = Graphics.FromImage(pictureBoxManoD.Image);
-                    g.DrawRectangle(pen, 76, 15, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoD.Refresh();
-                    break;
-                case "medioderecho":
-                    g = Graphics.FromImage(pictureBoxManoD.Image);
-                    g.DrawRectangle(pen, 110, 15, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoD.Refresh();
-                    break;
-                case "anularderecho":
-                    g = Graphics.FromImage(pictureBoxManoD.Image);
-                    g.DrawRectangle(pen, 135, 32, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoD.Refresh();
-                    break;
-                case "meñiquederecho":
-                    g = Graphics.FromImage(pictureBoxManoD.Image);
-                    g.DrawRectangle(pen, 157, 66, 25, 40);
-                    g.Dispose();
-                    pictureBoxManoD.Refresh();
-                    break;
-            }
-        }
-
-        public CaptureForm() : base() // Si hereda de Form directamente
-        {
-            InitializeComponent();
-            // Otras inicializaciones necesarias para el diseñador (si las hay)
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

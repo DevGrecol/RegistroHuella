@@ -17,10 +17,6 @@ using System.Windows.Forms;
 
 namespace PruebaDigitalPersonRegistrar.Conexion
 {
-
-    
-  
-
     public class ConexionBD : DbContext
     {
         public string connectionString = ("Host=localhost;Username=postgres;Password=31415926;Database=cali_17_03_2025;Pooling=true;Minimum Pool Size=5;Maximum Pool Size=100;");
@@ -44,16 +40,16 @@ namespace PruebaDigitalPersonRegistrar.Conexion
                 }
                 catch (NpgsqlException ex)
                 {
-                    
+
                     Show("Error de PostgreSQL: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-                    
+
                     throw;
                 }
                 catch (Exception ex)
                 {
-                    
+
                     Show("Error al guardar empleado: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-                    
+
                     throw;
                 }
             }
@@ -66,7 +62,7 @@ namespace PruebaDigitalPersonRegistrar.Conexion
             try
             {
                 this.Database.Connection.Open();
-                string query = "SELECT Id FROM empleados"; 
+                string query = "SELECT Id FROM public.clientes";
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, (NpgsqlConnection)this.Database.Connection))
                 {
                     using (NpgsqlDataReader reader = cmd.ExecuteReader())
@@ -81,7 +77,7 @@ namespace PruebaDigitalPersonRegistrar.Conexion
             }
             catch (Exception ex)
             {
-                Show($"Error al obtener IDs de empleados: {ex.Message}","", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
+                Show($"Error al obtener IDs de empleados: {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
                 return null;
             }
             finally
@@ -97,7 +93,7 @@ namespace PruebaDigitalPersonRegistrar.Conexion
             try
             {
                 this.Database.Connection.Open();
-                string query = "SELECT huella FROM empleados WHERE Id = @Id";
+                string query = "SELECT huella FROM public.clientes WHERE Id = @Id";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, (NpgsqlConnection)this.Database.Connection))
                 {
@@ -111,7 +107,7 @@ namespace PruebaDigitalPersonRegistrar.Conexion
                         }
                         else
                         {
-                            return null; 
+                            return null;
                         }
                     }
                 }
@@ -127,33 +123,58 @@ namespace PruebaDigitalPersonRegistrar.Conexion
             }
         }
 
-        public string ObtenerNombreEmpleadoDesdeBD(int idEmpleado)
+        public byte[] ObtenerHuellaEmpleadoDesdeBD(int idEmpleado, string nombreHuella)
         {
+            string columnaHuella = "";
+            switch (nombreHuella.ToLower())
+            {
+                case "MeñiqueIzquierdo": columnaHuella = "MeñiqueIzquierdo"; break;
+                case "AnularIzquierdo": columnaHuella = "AnularIzquierdo"; break;
+                case "MedioIzquierdo": columnaHuella = "MedioIzquierdo"; break;
+                case "IndiceIzquierdo": columnaHuella = "IndiceIzquierdo"; break;
+                case "PulgarIzquierdo": columnaHuella = "PulgarIzquierdo"; break;
+                case "PulgarDerecho": columnaHuella = "PulgarDerecho"; break;
+                case "IndiceDerecho": columnaHuella = "IndiceDerecho"; break;
+                case "MedioDerecho": columnaHuella = "MedioDerecho"; break;
+                case "AnularDerecho": columnaHuella = "AnularDerecho"; break;
+                case "MeñiqueDerecho": columnaHuella = "MeñiqueDerecho"; break;
+                default:
+                    Show($"Nombre de huella no válido: {nombreHuella}", "", MessageBoxButtons.OK, MessageBoxIcon.Warning, Color.Yellow, Color.OrangeRed, Color.Black);
+                    return null;
+            }
+
             try
             {
                 this.Database.Connection.Open();
-                string query = "SELECT nombre FROM empleados WHERE Id = @Id";
+                string query = $"SELECT \"{columnaHuella}\" FROM public.clientes WHERE Id = @Id";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, (NpgsqlConnection)this.Database.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@Id", idEmpleado);
+                    cmd.Parameters.AddWithValue("@id", idEmpleado);
 
                     using (NpgsqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return reader.GetString(0);
+                            if (!reader.IsDBNull(0))
+                            {
+                                return (byte[])reader.GetValue(0);
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                         else
                         {
-                            return null; 
+                            return null;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Show($"Error al obtener nombre del empleado {idEmpleado}: {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White     );
+                Show($"Error al obtener la huella '{nombreHuella}' del empleado {idEmpleado}: {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
                 return null;
             }
             finally
@@ -172,7 +193,7 @@ namespace PruebaDigitalPersonRegistrar.Conexion
                 using (var cmd = connection.CreateCommand())
                 {
                     connection.Open();
-                    cmd.CommandText = "select id_cliente,numero_identificacion,nombres, apellidos,codigo_ver,huella FROM clientes where numero_identificacion = @numero_identificacion";
+                    cmd.CommandText = "SELECT id_cliente, nombres, apellidos, numero_identificacion, codigo_ver, meñiqueizquierdo, anularizquierdo, medioizquierdo, indiceizquierdo, pulgarizquierdo, meñiquederecho, anularderecho, medioderecho, indicederecho, pulgarderecho FROM clientes WHERE numero_identificacion = @numero_identificacion";
                     cmd.Parameters.AddWithValue("@id_cliente", cliente.id_cliente);
                     cmd.Parameters.AddWithValue("@numero_identificacion", cliente.numero_identificacion);
                     cmd.Parameters.AddWithValue("@codigo_ver", cliente.codigo_ver);
@@ -189,23 +210,41 @@ namespace PruebaDigitalPersonRegistrar.Conexion
                             cliente.apellidos = reader.GetString(reader.GetOrdinal("apellidos"));
                             cliente.codigo_ver = reader.GetInt32(reader.GetOrdinal("codigo_ver"));
 
-                            Boolean validador  =  reader.IsDBNull(5) ? false : true;
+                            Boolean validador = reader.IsDBNull(5) ? false : true;
 
                             if (validador == true)
                             {
 
                                 byte[] bytes = (byte[])reader.GetValue(5);
-                                cliente.huella = bytes;
-
+                                cliente.MeñiqueIzquierdo = reader.IsDBNull(reader.GetOrdinal("MeñiqueIzquierdo")) ? null : (byte[])reader["MeñiqueIzquierdo"];
+                                cliente.AnularIzquierdo = reader.IsDBNull(reader.GetOrdinal("AnularIzquierdo")) ? null : (byte[])reader["AnularIzquierdo"];
+                                cliente.MedioIzquierdo = reader.IsDBNull(reader.GetOrdinal("MedioIzquierdo")) ? null : (byte[])reader["MedioIzquierdo"];
+                                cliente.IndiceIzquierdo = reader.IsDBNull(reader.GetOrdinal("IndiceIzquierdo")) ? null : (byte[])reader["IndiceIzquierdo"];
+                                cliente.PulgarIzquierdo = reader.IsDBNull(reader.GetOrdinal("PulgarIzquierdo")) ? null : (byte[])reader["PulgarIzquierdo"];
+                                cliente.PulgarDerecho = reader.IsDBNull(reader.GetOrdinal("PulgarDerecho")) ? null : (byte[])reader["PulgarDerecho"];
+                                cliente.IndiceDerecho = reader.IsDBNull(reader.GetOrdinal("IndiceDerecho")) ? null : (byte[])reader["IndiceDerecho"];
+                                cliente.MedioDerecho = reader.IsDBNull(reader.GetOrdinal("MedioDerecho")) ? null : (byte[])reader["MedioDerecho"];
+                                cliente.AnularDerecho = reader.IsDBNull(reader.GetOrdinal("AnularDerecho")) ? null : (byte[])reader["AnularDerecho"];
+                                cliente.MeñiqueDerecho = reader.IsDBNull(reader.GetOrdinal("MeñiqueDerecho")) ? null : (byte[])reader["MeñiqueDerecho"];
                             }
-                            else {
-
-                                cliente.huella = null;
+                            else
+                            {
+                                cliente.MeñiqueIzquierdo = null;
+                                cliente.AnularIzquierdo = null;
+                                cliente.MedioIzquierdo = null;
+                                cliente.IndiceIzquierdo = null;
+                                cliente.PulgarIzquierdo = null;
+                                cliente.PulgarDerecho = null;
+                                cliente.IndiceDerecho = null;
+                                cliente.MedioDerecho = null;
+                                cliente.AnularDerecho = null;
+                                cliente.MeñiqueDerecho = null;
                             }
 
                             return cliente;
                         }
-                        else {
+                        else
+                        {
 
 
                             cliente.id_cliente = 0;
@@ -225,7 +264,6 @@ namespace PruebaDigitalPersonRegistrar.Conexion
         }
 
 
-
         public void GuardarHuellaCliente(Cliente cliente)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
@@ -234,44 +272,56 @@ namespace PruebaDigitalPersonRegistrar.Conexion
                 {
                     connection.Open();
 
-                    //string sql = "INSERT INTO empleados (nombre, huella) VALUES (@nombre, @huella)";
-
-                    string sql = "UPDATE clientes SET huella = @huella WHERE id_cliente= @id_cliente";
+                    string sql = @"
+                        UPDATE clientes SET
+                        MeñiqueIzquierdo = @MeñiqueIzquierdo,
+                        AnularIzquierdo = @AnularIzquierdo,
+                        MedioIzquierdo = @MedioIzquierdo,
+                        IndiceIzquierdo = @IndiceIzquierdo,
+                        PulgarIzquierdo = @PulgarIzquierdo,
+                        PulgarDerecho = @PulgarDerecho,
+                        IndiceDerecho = @IndiceDerecho,
+                        MedioDerecho = @MedioDerecho,
+                        AnularDerecho = @AnularDerecho,
+                        MeñiqueDerecho = @MeñiqueDerecho
+                        WHERE id_cliente = @id_cliente";
 
                     using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@id_cliente", cliente.id_cliente);
-                        command.Parameters.AddWithValue("@huella", cliente.huella);
-
+                        command.Parameters.AddWithValue("@MeñiqueIzquierdo", cliente.MeñiqueIzquierdo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@AnularIzquierdo", cliente.AnularIzquierdo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@MedioIzquierdo", cliente.MedioIzquierdo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@IndiceIzquierdo", cliente.IndiceIzquierdo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@PulgarIzquierdo", cliente.PulgarIzquierdo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@PulgarDerecho", cliente.PulgarDerecho ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@IndiceDerecho", cliente.IndiceDerecho ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@MedioDerecho", cliente.MedioDerecho ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@AnularDerecho", cliente.AnularDerecho ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@MeñiqueDerecho", cliente.MeñiqueDerecho ?? (object)DBNull.Value);
                         command.ExecuteNonQuery();
                     }
                 }
                 catch (NpgsqlException ex)
                 {
-
-                    Show("Error de PostgreSQL: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-
+                    Show("Error de PostgreSQL al guardar huellas del cliente: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
                     throw;
                 }
                 catch (Exception ex)
                 {
-
-                    Show("Error al guardar cliente: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-
+                    Show("Error al guardar huellas del cliente: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
                     throw;
                 }
             }
         }
-
-
         public int confirmarHuella(Cliente cliente)
         {
 
-            
 
 
-           return 1;
-        
+
+            return 1;
+
         }
 
         public static Color ColorIntermedio(Color color1, Color color2)
@@ -419,9 +469,5 @@ namespace PruebaDigitalPersonRegistrar.Conexion
 
             return messageBoxForm.ShowDialog();
         }
-
-
-
-
     }
 }

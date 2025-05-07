@@ -20,7 +20,20 @@ namespace PruebaDigitalPersonRegistrar
 {
     public partial class frmRegistrar : Form
     {
-        private DPFP.Template Template;
+        private DPFP.Template //Template,
+            TemplateMeñiqueIzquierdo,
+            TemplateAnularIzquierdo,
+            TemplateMedioIzquierdo,
+            TemplateIndiceIzquierdo,
+            TemplatePulgarIzquierdo,
+            TemplatePulgarDerecho,
+            TemplateIndiceDerecho,
+            TemplateMedioDerecho,
+            TemplateAnularDerecho,
+            TemplateMeñiqueDerecho;
+
+        private string dedoSeleccionado;
+
         private ConexionBD contexto;
 
         public frmRegistrar()
@@ -28,25 +41,35 @@ namespace PruebaDigitalPersonRegistrar
             InitializeComponent();
         }
 
-   
+        private static readonly Random random = new Random();
+        private string ObtenerDedoAleatorio()
+        {
+            string[] nombresDedos = {
+                "MeñiqueIzquierdo", "AnularIzquierdo", "MedioIzquierdo", "IndiceIzquierdo", "PulgarIzquierdo",
+                "PulgarDerecho", "IndiceDerecho", "MedioDerecho", "AnularDerecho", "MeñiqueDerecho"
+            };
+            int indiceAleatorio = random.Next(nombresDedos.Length);
+            return nombresDedos[indiceAleatorio];
+        }
+
         private void btnRegistrarHuella_Click(object sender, EventArgs e)
         {
             if (txtDocumento.Text == "" || txtIdentificadorCliente.Text == "")
             {
-                Show("Error al consultar el cliente: debe de ingresar una cedula de cliente registrado","Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information,
-                    Color.LightCoral,
-                    Color.IndianRed,
-                    Color.Black);
+                Show("Error al consultar el cliente: debe de ingresar una cedula de cliente registrado", "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information,
+                        Color.LightCoral,
+                        Color.IndianRed,
+                        Color.Black);
 
             }
             else
             {
-                CapturarHuella capturar = new CapturarHuella();
-                capturar.OnTemplate += this.OnTemplate;
-                capturar.FormClosed += Capturar_FormClosed;
-                capturar.ShowDialog();
+                dedoSeleccionado = ObtenerDedoAleatorio();
+                CapturarHuella capturar1 = new CapturarHuella(dedoSeleccionado);
+                capturar1.OnTemplate += (template) => OnTemplate((DPFP.Template)template, dedoSeleccionado);
+                capturar1.ShowDialog();
             }
         }
         // -------- Redondear bordes de los botones --------
@@ -70,36 +93,57 @@ namespace PruebaDigitalPersonRegistrar
             boton.Region = region;
         }
 
-
-        // Replace the usage of 'CustomMessageBox.Show' with the static 'Show' method defined in the same class.  
         private void Capturar_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Template != null)
+            if (TemplateMeñiqueIzquierdo != null ||
+                    TemplateAnularIzquierdo != null ||
+                    TemplateMedioIzquierdo != null ||
+                    TemplateIndiceIzquierdo != null ||
+                    TemplatePulgarIzquierdo != null ||
+                    TemplatePulgarDerecho != null ||
+                    TemplateIndiceDerecho != null ||
+                    TemplateMedioDerecho != null ||
+                    TemplateAnularDerecho != null ||
+                    TemplateMeñiqueDerecho != null)
             {
                 Show("La plantilla de huella dactilar está lista para la verificación de huella dactilar.",
-                     "Registro de huella dactilar",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information,
-                     Color.LightGreen, // Verde más claro para el fondo
-                     Color.LightGreen,      // Verde un poco más oscuro para el borde
-                     Color.Black);
+                            "Registro de huella dactilar",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            Color.LightGreen,
+                            Color.LightGreen,
+                            Color.Black);
             }
         }
 
 
-        // Replacing 'CustomMessageBox.Show' with the 'Show' method already defined in the same class.  
-        private void OnTemplate(DPFP.Template template)
+
+        private void OnTemplate(DPFP.Template template, string dedo)
         {
             this.Invoke(new Function(delegate ()
             {
-                Template = template;
-                btnAgregar.Enabled = (Template != null);
-
-                if (Template != null)
+                if (template != null)
                 {
                     txtHuella.Text = "Huella capturada correctamente";
                     btnAgregar.BackColor = Color.LightGreen;
                     btnAgregar.ForeColor = Color.DarkGreen;
+
+                    // Mostrar el mensaje de plantilla lista para guardar
+
+
+                    switch (dedo)
+                    {
+                        case "MeñiqueIzquierdo": TemplateMeñiqueIzquierdo = template; break;
+                        case "AnularIzquierdo": TemplateAnularIzquierdo = template; break;
+                        case "MedioIzquierdo": TemplateMedioIzquierdo = template; break;
+                        case "IndiceIzquierdo": TemplateIndiceIzquierdo = template; break;
+                        case "PulgarIzquierdo": TemplatePulgarIzquierdo = template; break;
+                        case "PulgarDerecho": TemplatePulgarDerecho = template; break;
+                        case "IndiceDerecho": TemplateIndiceDerecho = template; break;
+                        case "MedioDerecho": TemplateMedioDerecho = template; break;
+                        case "AnularDerecho": TemplateAnularDerecho = template; break;
+                        case "MeñiqueDerecho": TemplateMeñiqueDerecho = template; break;
+                    }
                 }
                 else
                 {
@@ -113,6 +157,23 @@ namespace PruebaDigitalPersonRegistrar
                     btnAgregar.BackColor = SystemColors.Control;
                     btnAgregar.ForeColor = SystemColors.ControlText;
                 }
+
+
+                btnAgregar.Enabled = TemplateMeñiqueIzquierdo != null || TemplateAnularIzquierdo != null ||
+                                    TemplateMedioIzquierdo != null || TemplateIndiceIzquierdo != null ||
+                                    TemplatePulgarIzquierdo != null || TemplatePulgarDerecho != null ||
+                                    TemplateIndiceDerecho != null || TemplateMedioDerecho != null ||
+                                    TemplateAnularDerecho != null || TemplateMeñiqueDerecho != null;
+
+
+                Show("Plantilla lista para guardar.",
+                     "Registro de huella",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information,
+                     Color.LightGreen,
+                     Color.LightGreen,
+                     Color.Black);
+
             }));
         }
 
@@ -163,37 +224,97 @@ namespace PruebaDigitalPersonRegistrar
         {
             try
             {
-                byte[] streamHuella = Template.Bytes;
+                List<Tuple<string, byte[]>> nuevasHuellas = new List<Tuple<string, byte[]>>();
+                if (TemplateMeñiqueIzquierdo?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Meñique Izquierdo", TemplateMeñiqueIzquierdo.Bytes));
+                if (TemplateAnularIzquierdo?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Anular Izquierdo", TemplateAnularIzquierdo.Bytes));
+                if (TemplateMedioIzquierdo?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Medio Izquierdo", TemplateMedioIzquierdo.Bytes));
+                if (TemplateIndiceIzquierdo?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Indice Izquierdo", TemplateIndiceIzquierdo.Bytes));
+                if (TemplatePulgarIzquierdo?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Pulgar Izquierdo", TemplatePulgarIzquierdo.Bytes));
+                if (TemplatePulgarDerecho?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Pulgar Derecho", TemplatePulgarDerecho.Bytes));
+                if (TemplateIndiceDerecho?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Indice Derecho", TemplateIndiceDerecho.Bytes));
+                if (TemplateMedioDerecho?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Medio Derecho", TemplateMedioDerecho.Bytes));
+                if (TemplateAnularDerecho?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Anular Derecho", TemplateAnularDerecho.Bytes));
+                if (TemplateMeñiqueDerecho?.Bytes != null) nuevasHuellas.Add(Tuple.Create("Meñique Derecho", TemplateMeñiqueDerecho.Bytes));
 
                 Cliente cliente = new Cliente()
                 {
                     id_cliente = Convert.ToInt32(txtIdentificadorCliente.Text),
-                    huella = streamHuella,
+                    MeñiqueIzquierdo = TemplateMeñiqueIzquierdo?.Bytes,
+                    AnularIzquierdo = TemplateAnularIzquierdo?.Bytes,
+                    MedioIzquierdo = TemplateMedioIzquierdo?.Bytes,
+                    IndiceIzquierdo = TemplateIndiceIzquierdo?.Bytes,
+                    PulgarIzquierdo = TemplatePulgarIzquierdo?.Bytes,
+                    PulgarDerecho = TemplatePulgarDerecho?.Bytes,
+                    IndiceDerecho = TemplateIndiceDerecho?.Bytes,
+                    MedioDerecho = TemplateMedioDerecho?.Bytes,
+                    AnularDerecho = TemplateAnularDerecho?.Bytes,
+                    MeñiqueDerecho = TemplateMeñiqueDerecho?.Bytes
                 };
 
                 contexto.GuardarHuellaCliente(cliente);
                 contexto.SaveChanges();
-                Show("Huella agregada al cliente correctamente",
-                     "Éxito",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information,
-                     Color.LightGreen,
-                     Color.LightGreen,  
-                     Color.Black);
-                Limpiar();
-                Template = null;
-                btnAgregar.Enabled = false;
+                Show("Huellas agregadas al cliente correctamente",
+                            "Éxito",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            Color.LightGreen,
+                            Color.LightGreen,
+                            Color.Black);
+                LimpiarCamposCliente();
+                LimpiarTemplatesCliente();
+                BtnCerrado();
 
-                txtDocumento.Text = "";
-                txtNombreCliente.Text = "";
-                txtApellidoCliente.Text = "";
-                txtIdentificadorCliente.Text = "";
-                txtHuella.Text = "";
+                TemplateMeñiqueIzquierdo = null;
+                TemplateAnularIzquierdo = null;
+                TemplateMedioIzquierdo = null;
+                TemplateIndiceIzquierdo = null;
+                TemplatePulgarIzquierdo = null;
+                TemplatePulgarDerecho = null;
+                TemplateIndiceDerecho = null;
+                TemplateMedioDerecho = null;
+                TemplateAnularDerecho = null;
+                TemplateMeñiqueDerecho = null;
+                btnAgregar.Enabled = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Show(ex.Message, "Error",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information,
+                                 Color.LightCoral,
+                                 Color.IndianRed,
+                                 Color.White);
             }
+        }
+
+        private void LimpiarCamposCliente()
+        {
+            txtDocumento.Text = "";
+            txtNombreCliente.Text = "";
+            txtApellidoCliente.Text = "";
+            txtIdentificadorCliente.Text = "";
+            txtHuella.Text = "";
+        }
+
+        private void LimpiarTemplatesCliente()
+        {
+            TemplateMeñiqueIzquierdo = null;
+            TemplateAnularIzquierdo = null;
+            TemplateMedioIzquierdo = null;
+            TemplateIndiceIzquierdo = null;
+            TemplatePulgarIzquierdo = null;
+            TemplatePulgarDerecho = null;
+            TemplateIndiceDerecho = null;
+            TemplateMedioDerecho = null;
+            TemplateAnularDerecho = null;
+            TemplateMeñiqueDerecho = null;
+            //Template = null;
+        }
+
+        private void BtnCerrado()
+        {
+            btnAgregar.Enabled = false;
+            btnAgregar.BackColor = SystemColors.Control;
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
@@ -201,12 +322,12 @@ namespace PruebaDigitalPersonRegistrar
             if (txtDocumento.Text == "")
             {
                 Show("Error al consultar el cliente: debe de ingresar la cedula del cliente",
-                     "Error",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information,
-                     Color.LightCoral,
-                     Color.IndianRed,
-                     Color.White);
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            Color.LightCoral,
+                            Color.IndianRed,
+                            Color.White);
             }
             else
             {
@@ -225,7 +346,39 @@ namespace PruebaDigitalPersonRegistrar
                     txtNombreCliente.Text = cliente.nombres;
                     txtApellidoCliente.Text = cliente.apellidos;
 
-                    if (cliente.huella != null)
+                    if (cliente.MeñiqueIzquierdo != null |
+                        cliente.AnularIzquierdo != null |
+                        cliente.MedioIzquierdo != null |
+                        cliente.IndiceIzquierdo != null |
+                        cliente.PulgarIzquierdo != null |
+                        cliente.PulgarDerecho != null |
+                        cliente.IndiceDerecho != null |
+                        cliente.MedioDerecho != null |
+                        cliente.AnularDerecho != null |
+                        cliente.MeñiqueDerecho != null)
+
+                    {
+                        btnRegistrar.Enabled = false;
+                    }
+                    else if (cliente.nombres == "0" || cliente.apellidos == "0")
+                    {
+                        Show("El cliente consultado no existe", "Error",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information,
+                                     Color.LightCoral,
+                                     Color.IndianRed,
+                                     Color.White);
+                    }
+                    else if (cliente.MeñiqueIzquierdo != null |
+                            cliente.AnularIzquierdo != null |
+                            cliente.MedioIzquierdo != null |
+                            cliente.IndiceIzquierdo != null |
+                            cliente.PulgarIzquierdo != null |
+                            cliente.PulgarDerecho != null |
+                            cliente.IndiceDerecho != null |
+                            cliente.MedioDerecho != null |
+                            cliente.AnularDerecho != null |
+                            cliente.MeñiqueDerecho != null)
                     {
                         btnRegistrar.Enabled = false;
                         btnAgregar.Enabled = false;
@@ -281,7 +434,8 @@ namespace PruebaDigitalPersonRegistrar
                 });
 
             }
-            else {
+            else
+            {
 
                 Show("Falta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
 
@@ -292,80 +446,77 @@ namespace PruebaDigitalPersonRegistrar
 
         private void buscaClienteRegistrar(string numero_identificacion, object sender, EventArgs e)
         {
+            // Elimina espacios en blanco al principio y al final del texto ingresado
+            string documentoTrimmed = txtDocumento.Text.Trim();
 
-
-            if (txtDocumento.Text == "")
+            if (string.IsNullOrEmpty(documentoTrimmed)) // Verifica si está vacío o solo contiene espacios
             {
-
-
-
-                Show("Error al consultar el cliente: debe de ingresar la cedula del cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-
+                Show("Error al consultar el cliente: debe de ingresar la cédula del cliente",
+                         "Error",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Information,
+                         Color.LightCoral,
+                         Color.IndianRed,
+                         Color.White);
             }
             else
             {
-
                 contexto = new ConexionBD();
 
                 try
                 {
-
                     Cliente cliente = new Cliente()
                     {
-                        numero_identificacion = numero_identificacion,
+                        numero_identificacion = documentoTrimmed, // Usa el valor trimmeado
                     };
 
                     ///metodo para consultar un usuario
                     contexto.ConsultarCliente(cliente);
-
+                    //-------------------------------------------------------------------------------//
 
                     txtNombreCliente.Text = cliente.nombres;
                     txtApellidoCliente.Text = cliente.apellidos;
 
-                    if (cliente.nombres == "0" || cliente.apellidos == "0") {
-
-
+                    if (cliente.nombres == "0" || cliente.apellidos == "0")
+                    {
                         Show("El cliente consultado no existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
-
                     }
-                    else {
-
-                        if (cliente.huella != null)
+                    else
+                    {
+                        if (cliente.MeñiqueIzquierdo != null |
+                            cliente.AnularIzquierdo != null |
+                            cliente.MedioIzquierdo != null |
+                            cliente.IndiceIzquierdo != null |
+                            cliente.PulgarIzquierdo != null |
+                            cliente.PulgarDerecho != null |
+                            cliente.IndiceDerecho != null |
+                            cliente.MedioDerecho != null |
+                            cliente.AnularDerecho != null |
+                            cliente.MeñiqueDerecho != null)
                         {
                             btnRegistrar.Enabled = false;
                             btnAgregar.Enabled = false;
-
                         }
                         else
                         {
-
                             btnRegistrar.Enabled = true;
-
                             txtIdentificadorCliente.Text = Convert.ToString(cliente.id_cliente);
-
                             btnRegistrarHuella_Click(sender, e);
-
                         }
-
                     }
-
-                    //btnAgregar.Enabled = false;
-
                 }
                 catch (Exception ex)
                 {
                     Show("Error al consultar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, Color.LightCoral, Color.IndianRed, Color.White);
                 }
-
             }
-
         }
 
         private void txtApellidoCliente_TextChanged(object sender, EventArgs e)
         {
 
         }
-    
+
 
         public static Color ColorIntermedio(Color color1, Color color2)
         {

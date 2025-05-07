@@ -1,6 +1,6 @@
-namespace PruebaDigitalPersonRegistrar
+﻿namespace PruebaDigitalPersonRegistrar
 {
-    partial class CaptureForm
+    partial class CaptureFormVerificar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,15 @@ namespace PruebaDigitalPersonRegistrar
         private void InitializeComponent()
         {
             this.PromptLabel = new System.Windows.Forms.Label();
-            this.StatusLabel = new System.Windows.Forms.Label();
+            //this.StatusLabel = new System.Windows.Forms.Label();
             this.Picture = new System.Windows.Forms.PictureBox();
             this.Prompt = new System.Windows.Forms.TextBox();
-            this.StatusText = new System.Windows.Forms.TextBox();
-            this.StatusLine = new System.Windows.Forms.Label();
-            this.CloseButton = new System.Windows.Forms.Button();
+            //this.StatusText = new System.Windows.Forms.TextBox();
+            //this.StatusLine = new System.Windows.Forms.Label();
+            //this.CloseButton = new System.Windows.Forms.Button();
             this.LabelVerificador = new System.Windows.Forms.Label();
             this.labelVerification = new System.Windows.Forms.Label();
-            this.pictureBoxManoI = new System.Windows.Forms.PictureBox();
-            this.pictureBoxManoD = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxManoI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxManoD)).BeginInit();
             this.SuspendLayout();
             // 
             // PromptLabel
@@ -55,12 +51,12 @@ namespace PruebaDigitalPersonRegistrar
             // 
             // StatusLabel
             // 
-            this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Location = new System.Drawing.Point(266, 65);
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(40, 13);
-            this.StatusLabel.TabIndex = 3;
-            this.StatusLabel.Text = "Status:";
+            //this.StatusLabel.AutoSize = true;
+            //this.StatusLabel.Location = new System.Drawing.Point(266, 65);
+            //this.StatusLabel.Name = "StatusLabel";
+            //this.StatusLabel.Size = new System.Drawing.Size(40, 13);
+            //this.StatusLabel.TabIndex = 3;
+            //this.StatusLabel.Text = "Status:";
             // 
             // Picture
             // 
@@ -81,45 +77,43 @@ namespace PruebaDigitalPersonRegistrar
             this.Prompt.Location = new System.Drawing.Point(269, 28);
             this.Prompt.Name = "Prompt";
             this.Prompt.ReadOnly = true;
-            this.Prompt.Size = new System.Drawing.Size(406, 20);
+            this.Prompt.Size = new System.Drawing.Size(438, 20);
             this.Prompt.TabIndex = 2;
             // 
             // StatusText
             // 
-            this.StatusText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusText.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusText.Location = new System.Drawing.Point(269, 81);
-            this.StatusText.Multiline = true;
-            this.StatusText.Name = "StatusText";
-            this.StatusText.ReadOnly = true;
-            this.StatusText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.StatusText.Size = new System.Drawing.Size(406, 208);
-            this.StatusText.TabIndex = 4;
-            this.StatusText.TextChanged += new System.EventHandler(this.StatusText_TextChanged);
+            //this.StatusText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            //| System.Windows.Forms.AnchorStyles.Left)
+            //| System.Windows.Forms.AnchorStyles.Right)));
+            //this.StatusText.BackColor = System.Drawing.SystemColors.Window;
+            //this.StatusText.Location = new System.Drawing.Point(269, 81);
+            //this.StatusText.Multiline = true;
+            //this.StatusText.Name = "StatusText";
+            //this.StatusText.ReadOnly = true;
+            //this.StatusText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            //this.StatusText.Size = new System.Drawing.Size(438, 208);
+            //this.StatusText.TabIndex = 4;
             // 
             // StatusLine
             // 
-            this.StatusLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusLine.Location = new System.Drawing.Point(9, 376);
-            this.StatusLine.Name = "StatusLine";
-            this.StatusLine.Size = new System.Drawing.Size(928, 39);
-            this.StatusLine.TabIndex = 5;
-            this.StatusLine.Text = "[Status line]";
+            //this.StatusLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            //| System.Windows.Forms.AnchorStyles.Right)));
+            //this.StatusLine.Location = new System.Drawing.Point(9, 376);
+            //this.StatusLine.Name = "StatusLine";
+            //this.StatusLine.Size = new System.Drawing.Size(666, 39);
+            //this.StatusLine.TabIndex = 5;
+            //this.StatusLine.Text = "[Status line]";
             // 
             // CloseButton
             // 
-            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Location = new System.Drawing.Point(600, 330);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 52);
-            this.CloseButton.TabIndex = 6;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            //this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            //this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            //this.CloseButton.Location = new System.Drawing.Point(670, 363);
+            //this.CloseButton.Name = "CloseButton";
+            //this.CloseButton.Size = new System.Drawing.Size(75, 52);
+            //this.CloseButton.TabIndex = 6;
+            //this.CloseButton.Text = "Close";
+            //this.CloseButton.UseVisualStyleBackColor = true;
             // 
             // LabelVerificador
             // 
@@ -141,41 +135,19 @@ namespace PruebaDigitalPersonRegistrar
             this.labelVerification.TabIndex = 8;
             this.labelVerification.Text = "...";
             // 
-            // pictureBoxManoI
+            // CaptureFormVerificar
             // 
-            this.pictureBoxManoI.Image = global::PruebaDigitalPersonRegistrar.Properties.Resources.ManoIzquierdaSinFondo;
-            this.pictureBoxManoI.Location = new System.Drawing.Point(685, 133);
-            this.pictureBoxManoI.Name = "pictureBoxManoI";
-            this.pictureBoxManoI.Size = new System.Drawing.Size(99, 93);
-            this.pictureBoxManoI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxManoI.TabIndex = 9;
-            this.pictureBoxManoI.TabStop = false;
-            // 
-            // pictureBoxManoD
-            // 
-            this.pictureBoxManoD.Image = global::PruebaDigitalPersonRegistrar.Properties.Resources.ManoDerechaSinFondo;
-            this.pictureBoxManoD.Location = new System.Drawing.Point(821, 133);
-            this.pictureBoxManoD.Name = "pictureBoxManoD";
-            this.pictureBoxManoD.Size = new System.Drawing.Size(102, 93);
-            this.pictureBoxManoD.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxManoD.TabIndex = 10;
-            this.pictureBoxManoD.TabStop = false;
-            // 
-            // CaptureForm
-            // 
-            this.AcceptButton = this.CloseButton;
+            //this.AcceptButton = this.CloseButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CloseButton;
-            this.ClientSize = new System.Drawing.Size(1030, 458);
-            this.Controls.Add(this.pictureBoxManoD);
-            this.Controls.Add(this.pictureBoxManoI);
+            //this.CancelButton = this.CloseButton;
+            this.ClientSize = new System.Drawing.Size(768, 458);
             this.Controls.Add(this.labelVerification);
             this.Controls.Add(this.LabelVerificador);
-            this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.StatusLine);
-            this.Controls.Add(this.StatusText);
-            this.Controls.Add(this.StatusLabel);
+            //this.Controls.Add(this.CloseButton);
+            //this.Controls.Add(this.StatusLine);
+            //this.Controls.Add(this.StatusText);
+            //this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.Prompt);
             this.Controls.Add(this.PromptLabel);
             this.Controls.Add(this.Picture);
@@ -190,8 +162,6 @@ namespace PruebaDigitalPersonRegistrar
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CaptureForm_FormClosed);
             this.Load += new System.EventHandler(this.CaptureForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxManoI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxManoD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,14 +171,12 @@ namespace PruebaDigitalPersonRegistrar
 
         private System.Windows.Forms.PictureBox Picture;
         private System.Windows.Forms.TextBox Prompt;
-        private System.Windows.Forms.TextBox StatusText;
-        private System.Windows.Forms.Label StatusLine;
-        private System.Windows.Forms.Button CloseButton;
+        //private System.Windows.Forms.TextBox StatusText;
+        //private System.Windows.Forms.Label StatusLine;
+        //private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label PromptLabel;
-        private System.Windows.Forms.Label StatusLabel;
+        //private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.Label LabelVerificador;
         private System.Windows.Forms.Label labelVerification;
-        private System.Windows.Forms.PictureBox pictureBoxManoI;
-        private System.Windows.Forms.PictureBox pictureBoxManoD;
     }
 }
