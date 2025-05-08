@@ -124,11 +124,18 @@ namespace PruebaDigitalPersonRegistrar
             {
                 if (template != null)
                 {
+                    // Mostrar el mensaje de plantilla lista para guardar ANTES de actualizar la UI
+                    Show("Plantilla lista para guardar.",
+          "Registro de huella",
+          MessageBoxButtons.OK,
+          MessageBoxIcon.Information,
+          Color.LightGreen,
+          Color.LightGreen,
+          Color.Black);
+
                     txtHuella.Text = "Huella capturada correctamente";
                     btnAgregar.BackColor = Color.LightGreen;
                     btnAgregar.ForeColor = Color.DarkGreen;
-
-                    // Mostrar el mensaje de plantilla lista para guardar
 
 
                     switch (dedo)
@@ -144,35 +151,26 @@ namespace PruebaDigitalPersonRegistrar
                         case "AnularDerecho": TemplateAnularDerecho = template; break;
                         case "MeñiqueDerecho": TemplateMeñiqueDerecho = template; break;
                     }
-
-                    Show("Plantilla lista para guardar.",
-                    "Registro de huella",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information,
-                    Color.LightGreen,
-                    Color.LightGreen,
-                    Color.Black);
-
                 }
                 else
                 {
                     Show("La plantilla de huella dactilar no es válida. Repita el registro de huella dactilar",
-                         "Error",
-                         MessageBoxButtons.OK,
-                         MessageBoxIcon.Information,
-                         Color.LightCoral,
-                         Color.IndianRed,
-                         Color.White);
+                      "Error",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information,
+                      Color.LightCoral,
+                      Color.IndianRed,
+                      Color.White);
                     btnAgregar.BackColor = SystemColors.Control;
                     btnAgregar.ForeColor = SystemColors.ControlText;
                 }
 
 
                 btnAgregar.Enabled = TemplateMeñiqueIzquierdo != null || TemplateAnularIzquierdo != null ||
-                                    TemplateMedioIzquierdo != null || TemplateIndiceIzquierdo != null ||
-                                    TemplatePulgarIzquierdo != null || TemplatePulgarDerecho != null ||
-                                    TemplateIndiceDerecho != null || TemplateMedioDerecho != null ||
-                                    TemplateAnularDerecho != null || TemplateMeñiqueDerecho != null;
+                          TemplateMedioIzquierdo != null || TemplateIndiceIzquierdo != null ||
+                          TemplatePulgarIzquierdo != null || TemplatePulgarDerecho != null ||
+                          TemplateIndiceDerecho != null || TemplateMedioDerecho != null ||
+                          TemplateAnularDerecho != null || TemplateMeñiqueDerecho != null;
             }));
         }
 
@@ -537,8 +535,9 @@ namespace PruebaDigitalPersonRegistrar
                 Size = new Size(400, 200),
                 FormBorderStyle = FormBorderStyle.None,
                 MaximizeBox = false,
-                MinimizeBox = false
-            };
+                MinimizeBox = false,
+                TopMost = true
+            };
 
             Panel customTitleBar = new Panel
             {

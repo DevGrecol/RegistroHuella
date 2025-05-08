@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|solutionrelative:frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|c:\\users\\personal\\desktop\\registrarjorge - actual\\registrohuella\\frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|solutionrelative:frmregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|c:\\users\\personal\\desktop\\registrarjorge - actual\\registrohuella\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|c:\\users\\personal\\desktop\\registrarjorge - actual\\registrohuella\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A663E45C-A898-4CDD-9BA8-86D04E6321B4}|PruebaDigitalPersonRegistrar.csproj|solutionrelative:captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -84,7 +84,7 @@
               "RelativeDocumentMoniker": "FrmRegistrar.cs",
               "ToolTip": "C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\FrmRegistrar.cs",
               "RelativeToolTip": "FrmRegistrar.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAADwv40AAABWAAAAAAAAAA==",
+              "ViewState": "AgIAAPoBAAAAAAAAAAAwwAcCAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-08T16:25:01.769Z",
               "EditorCaption": ""
@@ -98,8 +98,7 @@
               "ToolTip": "C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\FrmRegistrar.cs [Dise\u00F1o]",
               "RelativeToolTip": "FrmRegistrar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T16:25:00.314Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-05-08T16:25:00.314Z"
             },
             {
               "$type": "Document",
@@ -111,8 +110,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T16:24:22.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T16:24:22.376Z"
             },
             {
               "$type": "Document",
@@ -124,8 +122,7 @@
               "RelativeToolTip": "CapturarHuella.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:51:13.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T22:51:13.72Z"
             },
             {
               "$type": "Document",
@@ -136,8 +133,7 @@
               "ToolTip": "C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\CapturarHuella.cs [Dise\u00F1o]",
               "RelativeToolTip": "CapturarHuella.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:51:12.121Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-05-07T22:51:12.121Z"
             },
             {
               "$type": "Document",
@@ -149,8 +145,7 @@
               "RelativeToolTip": "CaptureForm.Designer.cs",
               "ViewState": "AgIAAIEAAAAAAAAAAAAowJcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:44:46.381Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T22:44:46.381Z"
             },
             {
               "$type": "Document",
@@ -162,8 +157,7 @@
               "RelativeToolTip": "CaptureForm.cs",
               "ViewState": "AgIAAPQBAAAAAAAAAAAiwCICAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:42:51.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T22:42:51.933Z"
             },
             {
               "$type": "Document",
@@ -186,8 +180,7 @@
               "RelativeToolTip": "FrmVerificar.Designer.cs",
               "ViewState": "AgIAAIIAAAAAAAAAAAAAAJ8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:41:36.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T22:41:36.143Z"
             },
             {
               "$type": "Document",
@@ -199,8 +192,7 @@
               "RelativeToolTip": "FrmVerificar.cs",
               "ViewState": "AgIAAEUBAAAAAAAAAAAAAGIBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:41:14.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T22:41:14.693Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "ToolTip": "C:\\Users\\Personal\\Desktop\\RegistrarJorge - Actual\\RegistroHuella\\FrmVerificar.cs [Dise\u00F1o]",
               "RelativeToolTip": "FrmVerificar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T22:41:12.758Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-05-07T22:41:12.758Z"
             }
           ]
         }
