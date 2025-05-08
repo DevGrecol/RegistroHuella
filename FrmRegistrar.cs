@@ -144,6 +144,15 @@ namespace PruebaDigitalPersonRegistrar
                         case "AnularDerecho": TemplateAnularDerecho = template; break;
                         case "MeñiqueDerecho": TemplateMeñiqueDerecho = template; break;
                     }
+
+                    Show("Plantilla lista para guardar.",
+                    "Registro de huella",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    Color.LightGreen,
+                    Color.LightGreen,
+                    Color.Black);
+
                 }
                 else
                 {
@@ -164,16 +173,6 @@ namespace PruebaDigitalPersonRegistrar
                                     TemplatePulgarIzquierdo != null || TemplatePulgarDerecho != null ||
                                     TemplateIndiceDerecho != null || TemplateMedioDerecho != null ||
                                     TemplateAnularDerecho != null || TemplateMeñiqueDerecho != null;
-
-
-                Show("Plantilla lista para guardar.",
-                     "Registro de huella",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information,
-                     Color.LightGreen,
-                     Color.LightGreen,
-                     Color.Black);
-
             }));
         }
 
